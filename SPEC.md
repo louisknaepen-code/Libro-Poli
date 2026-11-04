@@ -1,7 +1,7 @@
 # SPEC — Tráiler « La Revolución Lufua: Siembra »
 
 GOAL:    Faire qu'un abonné Instagram veuille lire le livre : il suit la prémisse et retient la graine, le titre et « link en bio ».
-OUTPUT:  HyperFrames, 1080×1920 (Reel 9:16), 30 fps.
+OUTPUT:  HyperFrames, 1080×1350 (post Instagram 4:5), 30 fps. (v1 était un Reel 1080×1920.)
 TIME:    31,5 s × 30 = 945 frames. Pas de musique dans le fichier (aucune source accessible) : la musique s'ajoute dans Instagram, et le fichier porte les bruitages.
 
 LOOK:    Le site du livre, en matière et non en vide.

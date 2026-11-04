@@ -16,7 +16,7 @@
     .r-ground { position: absolute; inset: 0; }
     #r-cold { background: radial-gradient(ellipse 80% 55% at 50% 42%, #142230 0%, #0a1119 55%, #05080c 100%); }
     #r-warm { background: radial-gradient(ellipse 80% 55% at 50% 42%, #2a1d0c 0%, #140e07 55%, #070504 100%); opacity: 0; }
-    #r-veins { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #r-veins { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
     #r-grain { position: absolute; inset: 0; background: url("assets/img/grain.png"); opacity: 0.06; mix-blend-mode: overlay; }
 
     .r-line { position: absolute; left: 108px; width: 864px; color: var(--ivory); }
@@ -31,21 +31,21 @@
     }
     .frost { color: var(--frost); }
 
-    #r-l1 { top: 1000px; }
+    #r-l1 { top: 760px; }
     #r-ten { font-weight: 600; font-size: 200px; line-height: 1; letter-spacing: -0.015em; color: var(--frost); }
-    #r-l2 { top: 400px; }
-    #r-l3 { top: 600px; }
-    #r-l4 { top: 300px; }
+    #r-l2 { top: 300px; }
+    #r-l3 { top: 380px; }
+    #r-l4 { top: 170px; }
     #r-l4 .q { max-width: 760px; }
-    #r-l5 { top: 740px; }
+    #r-l5 { top: 400px; }
     #r-rev { font-weight: 600; font-size: 150px; line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 14px; }
   </style>
 
-  <div id="root" data-composition-id="relato" data-width="1080" data-height="1920">
+  <div id="root" data-composition-id="relato" data-width="1080" data-height="1350">
     <div id="r-stage">
       <div id="r-cold" class="r-ground"></div>
       <div id="r-warm" class="r-ground"></div>
-      <canvas id="r-veins" data-layout-allow-overflow width="1080" height="1920"></canvas>
+      <canvas id="r-veins" data-layout-allow-overflow width="1080" height="1350"></canvas>
       <div id="r-grain"></div>
 
       <div id="r-l1" class="r-line clip frost" data-start="0" data-duration="3.0" data-track-index="1">
@@ -83,7 +83,7 @@
 
   <script>
     (function () {
-      const W = 1080, H = 1920;
+      const W = 1080, H = 1350;
       const $ = (s) => document.querySelector(s);
       const $$ = (s) => Array.from(document.querySelectorAll(s));
 
@@ -135,7 +135,7 @@
       // The route across the Forte: one gold vein with nodes and tributaries.
       const route = [];
       for (let x = -60; x <= W + 380; x += 8) {
-        route.push([x, 1250 + 64 * Math.sin(x / 170 + 1.3) + 26 * Math.sin(x / 61 + 0.4)]);
+        route.push([x, 960 + 54 * Math.sin(x / 170 + 1.3) + 26 * Math.sin(x / 61 + 0.4)]);
       }
       let routeLen = 0;
       const cum = [0];
@@ -182,7 +182,7 @@
         // Route
         const p = outExpo(clamp((t - 10.45) / 3.1)) * routeLen;
         if (p > 0) {
-          const g = ctx.createLinearGradient(0, 1150, 0, 1350);
+          const g = ctx.createLinearGradient(0, 860, 0, 1060);
           g.addColorStop(0, "#f6dc95"); g.addColorStop(0.5, "#d9a446"); g.addColorStop(1, "#a8742a");
           ctx.strokeStyle = g;
           ctx.lineWidth = 3.2;

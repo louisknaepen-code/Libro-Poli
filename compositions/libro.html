@@ -23,7 +23,7 @@
     .w, .ch { display: inline-block; }
 
     /* The cover, rebuilt at 760 x 1134 (the original's 0.67 ratio) */
-    #l-cover { position: absolute; left: 160px; top: 190px; width: 760px; height: 1134px; transform-origin: 50% 0; }
+    #l-cover { position: absolute; left: 160px; top: 108px; width: 760px; height: 1134px; transform-origin: 50% 0; }
     #l-coverbg { position: absolute; inset: 0; background: #050403; box-shadow: 0 40px 90px rgba(0, 0, 0, 0.65); opacity: 0; }
     .fl { position: absolute; background: linear-gradient(90deg, #a8742a, #f1cf80 50%, #a8742a); }
     #l-fl-top { left: 26px; right: 26px; top: 26px; height: 2px; }
@@ -63,22 +63,22 @@
     }
 
     /* End card */
-    #l-kick { position: absolute; top: 186px; left: 108px; width: 864px; text-align: center; font-size: 38px; font-weight: 500; opacity: 0.8; }
-    #l-quote { position: absolute; top: 1000px; left: 108px; width: 864px; text-align: center; font-style: italic; font-weight: 500; font-size: 56px; line-height: 1.1; }
-    #l-btnwrap { position: absolute; top: 1098px; left: 0; width: 1080px; text-align: center; }
+    #l-kick { position: absolute; top: 420px; left: 572px; width: 380px; text-wrap: balance; text-align: left; font-size: 36px; line-height: 1.15; font-weight: 500; opacity: 0.8; }
+    #l-quote { position: absolute; top: 530px; left: 572px; width: 410px; text-align: left; font-style: italic; font-weight: 500; font-size: 56px; line-height: 1.08; }
+    #l-btnwrap { position: absolute; top: 700px; left: 572px; width: 410px; text-align: left; }
     #l-btn {
       display: inline-block; padding: 22px 52px; border-radius: 10px;
       background: #e2a84b; color: #1a1208; font-family: "EB Garamond", "Cormorant Garamond", serif; font-weight: 500; font-size: 44px; line-height: 1;
     }
-    #l-handle { position: absolute; top: 1222px; left: 108px; width: 864px; text-align: center; font-size: 40px; font-weight: 500; opacity: 0.85; }
+    #l-handle { position: absolute; top: 830px; left: 572px; width: 410px; text-align: left; font-size: 40px; line-height: 1.2; font-weight: 500; opacity: 0.85; }
   </style>
 
   <div
     id="root"
     data-composition-id="libro"
     data-width="1080"
-    data-height="1920"
-    data-composition-variables='[{"id":"quote","type":"string","label":"Cita","default":"“Aquí soy semilla, árbol y fruto”."},{"id":"cta","type":"string","label":"Botón","default":"Comprar el libro"},{"id":"handle","type":"string","label":"Cuenta","default":"Link en bio · @felipe.pollitzer"},{"id":"kicker","type":"string","label":"Antetítulo","default":"Novela · Primer libro de la trilogía"}]'
+    data-height="1350"
+    data-composition-variables='[{"id":"quote","type":"string","label":"Cita","default":"“Aquí soy semilla, árbol y fruto”."},{"id":"cta","type":"string","label":"Botón","default":"Comprar el libro"},{"id":"linkbio","type":"string","label":"Enlace","default":"Link en bio"},{"id":"handle","type":"string","label":"Cuenta","default":"@felipe.pollitzer"},{"id":"kicker","type":"string","label":"Antetítulo","default":"Novela · Primer libro de la trilogía"}]'
   >
     <div id="l-ground"></div>
     <div id="l-grain"></div>
@@ -109,7 +109,7 @@
     <div id="l-kick" class="clip" data-start="5.5" data-duration="3.7" data-track-index="2" data-var-text="kicker">Novela · Primer libro de la trilogía</div>
     <div id="l-quote" class="clip gold" data-start="5.9" data-duration="3.3" data-track-index="2" data-var-text="quote">“Aquí soy semilla, árbol y fruto”.</div>
     <div id="l-btnwrap" class="clip" data-start="6.6" data-duration="2.6" data-track-index="2"><span id="l-btn" data-var-text="cta">Comprar el libro</span></div>
-    <div id="l-handle" class="clip" data-start="7.0" data-duration="2.2" data-track-index="2" data-var-text="handle">Link en bio · @felipe.pollitzer</div>
+    <div id="l-handle" class="clip" data-start="7.0" data-duration="2.2" data-track-index="2" ><span data-var-text="linkbio">Link en bio</span><br /><span data-var-text="handle">@felipe.pollitzer</span></div>
   </div>
 
   <script>
@@ -149,10 +149,10 @@
       tl.fromTo("#l-name .ch", { opacity: 0.0, filter: "blur(4px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out", stagger: 0.045 }, 3.95);
 
       // 5.0 s: the cover is carried up to make room for the call to action.
-      tl.to("#l-cover", { scale: 0.62, y: 60, duration: 0.85, ease: "power3.inOut" }, 5.0);
+      tl.to("#l-cover", { scale: 0.58, x: -230, y: 238, duration: 0.85, ease: "power3.inOut" }, 5.0);
       tl.fromTo("#l-kick", { opacity: 0, filter: "blur(8px)" }, { opacity: 0.8, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 5.55);
       tl.fromTo("#l-quote", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power4.out" }, 5.95);
-      tl.fromTo("#l-btn", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 6.62);
+      tl.fromTo("#l-btn", { opacity: 0, scale: 0.92, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 6.62);
       tl.fromTo("#l-handle", { opacity: 0, filter: "blur(6px)" }, { opacity: 0.85, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 7.02);
 
       // Keep the timeline as long as the slot.

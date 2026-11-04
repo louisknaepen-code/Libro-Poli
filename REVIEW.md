@@ -1,4 +1,11 @@
-# REVIEW — Tráiler Reel « Siembra » (v1)
+# REVIEW — Tráiler « Siembra »
+
+## v2 — post Instagram 4:5 (1080×1350)
+- Toutes les scènes ont été recomposées pour 1350 px de haut ; le minutage et le son sont inchangés.
+- Fin en mise en page de pub de livre : couverture à gauche (×0,58), texte à droite (antétitre, citation, bouton, « Link en bio / @felipe.pollitzer »).
+- `check` : OK. Rendu vérifié : 1080×1350, 30 i/s, 31,5 s ; bruitages à 16,4 / 17,7 / 23,1 / 27,1 s ; −12,8 LUFS, crête −2,7 dBTP.
+
+## v1 — Reel 9:16
 
 ## Choix créatifs
 - **Scénario retenu : C « La misión »**, construit comme une bande-annonce. Les phrases viennent du synopsis du site, dans l'ordre.
