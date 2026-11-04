@@ -1,0 +1,269 @@
+<template>
+  <style>
+    @font-face { font-family: "Cormorant Garamond"; src: url("assets/fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; }
+    @font-face { font-family: "Cormorant Garamond"; src: url("assets/fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2"); font-weight: 500; font-style: italic; }
+    @font-face { font-family: "Cormorant Garamond"; src: url("assets/fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; }
+
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Cormorant Garamond", "EB Garamond", serif;
+      --ivory: #efe6d4;
+      --frost: #dfe9f0;
+    }
+    #r-stage { position: absolute; inset: 0; }
+    .r-ground { position: absolute; inset: 0; }
+    #r-cold { background: radial-gradient(ellipse 85% 60% at 50% 42%, #152434 0%, #0a1119 55%, #05080c 100%); }
+    #r-warm { background: radial-gradient(ellipse 85% 60% at 50% 42%, #2c1e0c 0%, #140e07 55%, #070504 100%); opacity: 0; }
+    #r-world { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    #r-veins { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+    #r-vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 75% 70% at 50% 48%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.5) 100%); }
+    #r-grain { position: absolute; inset: 0; background: url("assets/img/grain.png"); opacity: 0.07; mix-blend-mode: overlay; }
+
+    .r-line { position: absolute; left: 108px; width: 864px; color: var(--ivory); }
+    .q { font-style: italic; font-weight: 500; font-size: 58px; line-height: 1.15; opacity: 0.8; margin-bottom: 18px; }
+    .b { font-weight: 600; font-size: 132px; line-height: 1.0; letter-spacing: -0.01em; }
+    .w, .ch { display: inline-block; }
+    .gold {
+      background: linear-gradient(180deg, #f6dc95 0%, #d9a446 55%, #a8742a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .frost { color: var(--frost); }
+
+    #r-l1 { top: 760px; }
+    #r-ten { font-weight: 600; font-size: 200px; line-height: 1; letter-spacing: -0.015em; color: var(--frost); }
+    #r-l2 { top: 300px; }
+    #r-l3 { top: 380px; }
+    #r-l4 { top: 170px; }
+    #r-l4 .q { max-width: 760px; }
+    #r-l5 { top: 400px; }
+    #r-rev { font-weight: 600; font-size: 150px; line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 14px; }
+  </style>
+
+  <div id="root" data-composition-id="relato" data-width="1080" data-height="1350">
+    <div id="r-stage">
+      <div id="r-cold" class="r-ground"></div>
+      <div id="r-warm" class="r-ground"></div>
+      <div id="r-world"><canvas id="r-veins" data-layout-allow-overflow width="1080" height="1350"></canvas></div>
+      <div id="r-vignette"></div>
+      <div id="r-grain"></div>
+
+      <div id="r-l1" class="r-line clip frost" data-start="0" data-duration="4.2" data-track-index="1">
+        <div class="q"><span class="w">En</span> <span class="w">la</span> <span class="w">fría</span> <span class="w">nación</span> <span class="w">de</span></div>
+        <div id="r-ten"><span class="w">Teneritas</span></div>
+      </div>
+
+      <div id="r-l2" class="r-line clip" data-start="3.95" data-duration="4.65" data-track-index="2">
+        <div class="b"><span class="w">Una</span> <span class="w">joven</span></div>
+        <div class="b"><span class="w">recibirá</span></div>
+        <div class="b"><span class="w">una</span> <span id="r-mision" class="w gold">misión</span></div>
+      </div>
+
+      <div id="r-l3" class="r-line clip frost" data-start="8.35" data-duration="5.25" data-track-index="1">
+        <div class="q r-l3a">para la que, lo sepa o no,</div>
+        <div class="b r-l3a">se ha estado</div>
+        <div class="b r-l3a">preparando</div>
+        <div class="b r-l3a">toda su vida.</div>
+      </div>
+
+      <div id="r-l4" class="r-line clip" data-start="14.2" data-duration="5.2" data-track-index="2">
+        <div class="q"><span class="w">Junto</span> <span class="w">a</span> <span class="w">compañeros</span> <span class="w">de</span> <span class="w">tierras</span> <span class="w">vecinas,</span></div>
+        <div class="b"><span class="w">emprenderá</span></div>
+        <div class="b"><span class="w">el</span> <span class="w">viaje</span> <span class="w">por</span></div>
+        <div class="b"><span class="w">todo</span> <span class="w">el</span> <span class="w">Forte</span></div>
+      </div>
+
+      <div id="r-l5" class="r-line clip" data-start="19.15" data-duration="4.35" data-track-index="1">
+        <div id="r-l5a" class="q">a fin de lograr</div>
+        <div id="r-rev">la revolución</div>
+        <div id="r-l5b" class="q">que salve a la humanidad.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const W = 1080, H = 1350;
+      const $ = (s) => document.querySelector(s);
+
+      const rev = $("#r-rev");
+      rev.innerHTML = Array.from(rev.textContent)
+        .map((c) => (c === " " ? '<span class="ch">&nbsp;</span>' : '<span class="ch gold">' + c + "</span>"))
+        .join("");
+
+      // ---------- Veins (same seed and geometry as row.html) ----------
+      function mulberry32(a) {
+        return function () {
+          a |= 0; a = (a + 0x6d2b79f5) | 0;
+          let t = Math.imul(a ^ (a >>> 15), 1 | a);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const rnd = mulberry32(20261104);
+      const frost = [];
+      function grow(list, x, y, ang, steps, step, w, t0, dt, depth) {
+        let t = t0;
+        for (let i = 0; i < steps; i++) {
+          ang += (rnd() - 0.5) * 0.55;
+          const nx = x + Math.cos(ang) * step, ny = y + Math.sin(ang) * step;
+          list.push({ x1: x, y1: y, x2: nx, y2: ny, w: w, t: t });
+          x = nx; y = ny; t += dt;
+          if (depth < 3 && rnd() < 0.17) {
+            grow(list, x, y, ang + (rnd() < 0.5 ? -1 : 1) * (0.6 + rnd() * 0.6),
+              Math.floor(steps * 0.45), step * 0.85, w * 0.62, t, dt * 1.1, depth + 1);
+          }
+          w *= 0.985;
+        }
+      }
+      function seedEdge(n, fx, fy, baseAng) {
+        for (let i = 0; i < n; i++) {
+          const p = fx(i, n), q = fy(i, n);
+          grow(frost, p, q, baseAng + (rnd() - 0.5) * 0.9, 12 + Math.floor(rnd() * 16), 16,
+            1.6 + rnd() * 1.1, -4.0 + rnd() * 9.5, 0.09, 0);
+        }
+      }
+      const jitter = (i, n, span) => ((i + 0.2 + rnd() * 0.6) / n) * span;
+      seedEdge(8, () => -12, (i, n) => jitter(i, n, H), 0);
+      seedEdge(8, () => W + 12, (i, n) => jitter(i, n, H), Math.PI);
+      seedEdge(8, () => W + 340, (i, n) => jitter(i, n, H), Math.PI);
+      seedEdge(5, (i, n) => jitter(i, n, W + 320), () => -12, Math.PI / 2);
+      seedEdge(5, (i, n) => jitter(i, n, W + 320), () => H + 12, -Math.PI / 2);
+
+      const route = [];
+      for (let x = -60; x <= W + 380; x += 8) {
+        route.push([x, 960 + 54 * Math.sin(x / 170 + 1.3) + 26 * Math.sin(x / 61 + 0.4)]);
+      }
+      let routeLen = 0;
+      const cum = [0];
+      for (let i = 1; i < route.length; i++) {
+        routeLen += Math.hypot(route[i][0] - route[i - 1][0], route[i][1] - route[i - 1][1]);
+        cum.push(routeLen);
+      }
+      const nodes = [];
+      for (let i = 20; i < route.length; i += 26) nodes.push(i);
+      const tribs = [];
+      nodes.forEach((ni, k) => {
+        const list = [];
+        const [x, y] = route[ni];
+        grow(list, x, y, (k % 2 ? -1 : 1) * (Math.PI / 2) + (rnd() - 0.5) * 0.8, 6 + Math.floor(rnd() * 6), 14, 1.4, 0, 0.05, 2);
+        tribs.push({ at: cum[ni], list });
+      });
+
+      const clamp = (v) => Math.max(0, Math.min(1, v));
+      const smooth = (v) => v * v * (3 - 2 * v);
+      const inOut = (v) => (v < 0.5 ? 4 * v * v * v : 1 - Math.pow(-2 * v + 2, 3) / 2);
+      const outQuart = (v) => 1 - Math.pow(1 - v, 4);
+      const ctx = $("#r-veins").getContext("2d");
+      ctx.lineCap = "round";
+      const FROST = [223, 233, 240], GOLD = [222, 168, 78];
+
+      // Beat times (seconds)
+      const FLOOD = 13.25, FLOOD_D = 1.2, PAN0 = 14.2, PAN_D = 5.6, ROUTE0 = 14.7, ROUTE_D = 4.2;
+
+      function draw(t) {
+        ctx.clearRect(0, 0, W, H);
+        const flood = smooth(clamp((t - FLOOD) / FLOOD_D));
+        const pan = -320 * inOut(clamp((t - PAN0) / PAN_D));
+        const c = FROST.map((v, i) => Math.round(v + (GOLD[i] - v) * flood));
+        const a = 0.5 - 0.12 * flood;
+        ctx.save();
+        ctx.translate(pan, 0);
+        ctx.strokeStyle = "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")";
+        for (const s of frost) {
+          if (s.t > t) continue;
+          const k = clamp((t - s.t) / 0.09);
+          ctx.lineWidth = s.w;
+          ctx.beginPath();
+          ctx.moveTo(s.x1, s.y1);
+          ctx.lineTo(s.x1 + (s.x2 - s.x1) * k, s.y1 + (s.y2 - s.y1) * k);
+          ctx.stroke();
+        }
+        const p = outQuart(clamp((t - ROUTE0) / ROUTE_D)) * routeLen;
+        if (p > 0) {
+          const g = ctx.createLinearGradient(0, 860, 0, 1060);
+          g.addColorStop(0, "#f6dc95"); g.addColorStop(0.5, "#d9a446"); g.addColorStop(1, "#a8742a");
+          ctx.strokeStyle = g;
+          ctx.lineWidth = 3.2;
+          ctx.beginPath();
+          ctx.moveTo(route[0][0], route[0][1]);
+          for (let i = 1; i < route.length; i++) {
+            if (cum[i] > p) {
+              const r = (p - cum[i - 1]) / (cum[i] - cum[i - 1]);
+              ctx.lineTo(route[i - 1][0] + (route[i][0] - route[i - 1][0]) * r, route[i - 1][1] + (route[i][1] - route[i - 1][1]) * r);
+              break;
+            }
+            ctx.lineTo(route[i][0], route[i][1]);
+          }
+          ctx.stroke();
+          ctx.lineWidth = 1.4;
+          ctx.strokeStyle = "rgba(222,168,78,0.8)";
+          for (const tr of tribs) {
+            if (tr.at > p) continue;
+            const local = (p - tr.at) / 140;
+            for (const s of tr.list) {
+              if (s.t > local) continue;
+              ctx.beginPath(); ctx.moveTo(s.x1, s.y1); ctx.lineTo(s.x2, s.y2); ctx.stroke();
+            }
+          }
+          for (const ni of nodes) {
+            if (cum[ni] > p) continue;
+            const [x, y] = route[ni];
+            const k = clamp((p - cum[ni]) / 60);
+            ctx.fillStyle = "#e9be62";
+            ctx.beginPath(); ctx.arc(x, y, 6.5 * k, 0, Math.PI * 2); ctx.fill();
+            ctx.strokeStyle = "rgba(233,190,98,0.55)"; ctx.lineWidth = 1.2;
+            ctx.beginPath(); ctx.arc(x, y, 12 * k, 0, Math.PI * 2); ctx.stroke();
+          }
+        }
+        ctx.restore();
+      }
+
+      // ---------- Timeline ----------
+      const tl = gsap.timeline({ paused: true });
+      const out = (sel, at) =>
+        tl.to(sel, { opacity: 0, filter: "blur(8px)", duration: 0.3, ease: "power2.in", stagger: 0.05 }, at);
+
+      // The world behind the words lives: a slow push across the whole scene (never the titles).
+      tl.fromTo("#r-world", { scale: 1.0 }, { scale: 1.06, duration: 23.5, ease: "none" }, 0);
+      // Film grain shimmer.
+      tl.fromTo("#r-grain", { backgroundPosition: "0px 0px" }, { backgroundPosition: "4096px 2816px", duration: 23.5, ease: "steps(352)" }, 0);
+
+      // L1 — on screen at frame 0 (hook + thumbnail), dead still.
+      out("#r-l1 .w", 3.9);
+
+      // L2 — from shadow to ivory; "misión" arrives in gold.
+      tl.fromTo("#r-l2 .w:not(#r-mision)", { color: "#2c353e" }, { color: "#efe6d4", duration: 0.45, ease: "power2.out", stagger: 0.14 }, 4.1);
+      tl.fromTo("#r-mision", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.8, ease: "expo.out" }, 4.85);
+      out("#r-l2 .w", 8.3);
+
+      // L3 — each line blurs in as a whole.
+      tl.fromTo("#r-l3 .r-l3a", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power4.out", stagger: 0.5 }, 8.55);
+      out("#r-l3 .r-l3a", 13.25);
+
+      // Colour flood: the cold ground warms as the frost turns to gold veins.
+      tl.fromTo("#r-warm", { opacity: 0 }, { opacity: 1, duration: FLOOD_D, ease: "power2.inOut" }, FLOOD);
+
+      // L4 — per word, while the route draws and the camera travels.
+      tl.fromTo("#r-l4 .q .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power2.out", stagger: 0.1 }, 14.3);
+      tl.fromTo("#r-l4 .b .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power2.out", stagger: 0.14 }, 15.2);
+      out("#r-l4 .w", 19.0);
+
+      // L5 — "la revolución" letter by letter in gold.
+      tl.fromTo("#r-l5a", { opacity: 0, filter: "blur(8px)" }, { opacity: 0.8, filter: "blur(0px)", duration: 0.3, ease: "power4.out" }, 19.35);
+      tl.fromTo("#r-rev .ch", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out", stagger: 0.05 }, 19.75);
+      tl.fromTo("#r-l5b", { opacity: 0, filter: "blur(8px)" }, { opacity: 0.8, filter: "blur(0px)", duration: 0.3, ease: "power4.out" }, 20.6);
+
+      // Whip out to the next scene.
+      tl.to("#r-stage", { x: -260, filter: "blur(22px)", duration: 0.24, ease: "power3.in" }, 23.26);
+
+      tl.eventCallback("onUpdate", () => draw(tl.time()));
+      draw(0);
+
+      window.__timelines["relato"] = tl;
+    })();
+  </script>
+</template>

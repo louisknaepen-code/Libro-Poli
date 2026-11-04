@@ -1,0 +1,163 @@
+<template>
+  <style>
+    @font-face { font-family: "Cormorant Garamond"; src: url("assets/fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; }
+    @font-face { font-family: "Cormorant Garamond"; src: url("assets/fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2"); font-weight: 500; font-style: italic; }
+    @font-face { font-family: "Cormorant Garamond"; src: url("assets/fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; }
+
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Cormorant Garamond", "EB Garamond", serif;
+      color: #efe6d4;
+      background: #000;
+    }
+    #l-ground { position: absolute; inset: 0; background: radial-gradient(ellipse 85% 50% at 50% 44%, #2e200d 0%, #160f07 50%, #070504 100%); opacity: 0; }
+    #l-vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 75% 70% at 50% 48%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.5) 100%); }
+    #l-grain { position: absolute; inset: 0; background: url("assets/img/grain.png"); opacity: 0.07; mix-blend-mode: overlay; }
+    .gold {
+      background: linear-gradient(180deg, #f6dc95 0%, #d9a446 55%, #a8742a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .w, .ch { display: inline-block; }
+
+    /* The cover, rebuilt at 760 x 1134 (the original's 0.67 ratio) */
+    #l-cover { position: absolute; left: 160px; top: 108px; width: 760px; height: 1134px; transform-origin: 50% 0; }
+    #l-coverbg { position: absolute; inset: 0; background: #050403; box-shadow: 0 40px 90px rgba(0, 0, 0, 0.65); opacity: 0; }
+    .fl { position: absolute; background: linear-gradient(90deg, #a8742a, #f1cf80 50%, #a8742a); }
+    #l-fl-top { left: 26px; right: 26px; top: 26px; height: 2px; }
+    #l-fl-bot { left: 26px; right: 26px; bottom: 26px; height: 2px; }
+    #l-fl-left { top: 26px; bottom: 26px; left: 26px; width: 2px; background: linear-gradient(180deg, #a8742a, #f1cf80 50%, #a8742a); }
+    #l-fl-right { top: 26px; bottom: 26px; right: 26px; width: 2px; background: linear-gradient(180deg, #a8742a, #f1cf80 50%, #a8742a); }
+    .spark {
+      position: absolute; width: 56px; height: 56px; margin: -28px 0 0 -28px;
+      background:
+        radial-gradient(circle, rgba(255, 238, 190, 1) 0, rgba(240, 200, 110, 0.6) 3px, rgba(240, 200, 110, 0) 12px),
+        linear-gradient(90deg, rgba(240, 200, 110, 0) 0, rgba(255, 228, 160, 0.9) 50%, rgba(240, 200, 110, 0) 100%) center / 56px 1.5px no-repeat,
+        linear-gradient(180deg, rgba(240, 200, 110, 0) 0, rgba(255, 228, 160, 0.9) 50%, rgba(240, 200, 110, 0) 100%) center / 1.5px 30px no-repeat;
+    }
+    #l-sp1 { left: 380px; top: 27px; }
+    #l-sp2 { left: 380px; top: 1107px; }
+    #l-sp3 { left: 27px; top: 567px; }
+    #l-sp4 { left: 733px; top: 567px; }
+
+    .ct { position: absolute; left: 0; width: 760px; text-align: center; font-weight: 600; line-height: 1; }
+    #l-t1 { top: 175px; font-size: 88px; }
+    #l-t2 { top: 268px; font-size: 88px; }
+    #l-div { position: absolute; top: 368px; left: 270px; width: 220px; height: 12px; }
+    #l-div-line { position: absolute; left: 0; right: 0; top: 5px; height: 1.5px; background: linear-gradient(90deg, rgba(200, 146, 58, 0), #e2b25a 30%, #e2b25a 70%, rgba(200, 146, 58, 0)); }
+    #l-div-dot { position: absolute; left: 106px; top: 2px; width: 8px; height: 8px; border-radius: 50%; background: #f1cf80; }
+    #l-t3 { top: 390px; font-size: 128px; }
+    #l-name { top: 900px; font-size: 48px; font-weight: 500; letter-spacing: 0.06em; }
+
+    #l-seed { position: absolute; left: 0; top: 465px; width: 760px; height: 490px; }
+    #l-seed img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+    #l-sheen {
+      position: absolute; inset: 0;
+      -webkit-mask-image: url("assets/img/semilla.png"); mask-image: url("assets/img/semilla.png");
+      -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+      background: linear-gradient(105deg, rgba(255, 240, 200, 0) 42%, rgba(255, 240, 200, 0.6) 50%, rgba(255, 240, 200, 0) 58%);
+      background-size: 300% 100%;
+      mix-blend-mode: screen;
+    }
+
+    /* End card */
+    #l-kick { position: absolute; top: 420px; left: 572px; width: 420px; white-space: nowrap; text-align: left; font-size: 34px; line-height: 1.2; font-weight: 500; opacity: 0.8; }
+    #l-quote { position: absolute; top: 530px; left: 572px; width: 410px; text-align: left; font-style: italic; font-weight: 500; font-size: 56px; line-height: 1.08; }
+    #l-btnwrap { position: absolute; top: 700px; left: 572px; width: 410px; text-align: left; }
+    #l-btn {
+      display: inline-block; padding: 22px 52px; border-radius: 10px;
+      background: #e2a84b; color: #1a1208; font-family: "EB Garamond", "Cormorant Garamond", serif; font-weight: 500; font-size: 44px; line-height: 1;
+    }
+    #l-handle { position: absolute; top: 830px; left: 572px; width: 410px; text-align: left; font-size: 40px; line-height: 1.2; font-weight: 500; opacity: 0.85; }
+  </style>
+
+  <div
+    id="root"
+    data-composition-id="libro"
+    data-width="1080"
+    data-height="1350"
+    data-composition-variables='[{"id":"quote","type":"string","label":"Cita","default":"“Aquí soy semilla, árbol y fruto”."},{"id":"cta","type":"string","label":"Botón","default":"Comprar el libro"},{"id":"linkbio","type":"string","label":"Enlace","default":"Link en bio"},{"id":"handle","type":"string","label":"Cuenta","default":"@felipe.pollitzer"},{"id":"kicker","type":"string","label":"Antetítulo","default":"Primer libro de la trilogía"}]'
+  >
+    <div id="l-ground"></div>
+    <div id="l-vignette"></div>
+    <div id="l-grain"></div>
+
+    <div id="l-cover" class="clip" data-start="0" data-duration="13" data-track-index="1">
+      <div id="l-coverbg"></div>
+      <div id="l-fl-top" class="fl"></div>
+      <div id="l-fl-bot" class="fl"></div>
+      <div id="l-fl-left" class="fl"></div>
+      <div id="l-fl-right" class="fl"></div>
+      <div id="l-sp1" class="spark"></div>
+      <div id="l-sp2" class="spark"></div>
+      <div id="l-sp3" class="spark"></div>
+      <div id="l-sp4" class="spark"></div>
+
+      <div id="l-t1" class="ct"><span class="w gold">La</span> <span class="w gold">Revolución</span></div>
+      <div id="l-t2" class="ct"><span class="w gold">Lufua:</span></div>
+      <div id="l-div"><div id="l-div-line"></div><div id="l-div-dot"></div></div>
+      <div id="l-t3" class="ct">Siembra</div>
+      <div id="l-name" class="ct">Felipe Pollitzer</div>
+
+      <div id="l-seed">
+        <img id="l-seed-img" src="assets/img/semilla.png" alt="La semilla" />
+        <div id="l-sheen"></div>
+      </div>
+    </div>
+
+    <div id="l-kick" class="clip" data-start="7.55" data-duration="5.45" data-track-index="2" >Novela<br /><span data-var-text="kicker">Primer libro de la trilogía</span></div>
+    <div id="l-quote" class="clip gold" data-start="8.05" data-duration="4.95" data-track-index="2" data-var-text="quote">“Aquí soy semilla, árbol y fruto”.</div>
+    <div id="l-btnwrap" class="clip" data-start="8.85" data-duration="4.15" data-track-index="2"><span id="l-btn" data-var-text="cta">Comprar el libro</span></div>
+    <div id="l-handle" class="clip" data-start="9.35" data-duration="3.65" data-track-index="2"><span data-var-text="linkbio">Link en bio</span><br /><span data-var-text="handle">@felipe.pollitzer</span></div>
+  </div>
+
+  <script>
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const letters = (sel, cls) => {
+        const el = $(sel);
+        el.innerHTML = Array.from(el.textContent)
+          .map((c) => (c === " " ? '<span class="ch">&nbsp;</span>' : '<span class="ch ' + cls + '" data-layout-allow-occlusion>' + c + "</span>"))
+          .join("");
+      };
+      letters("#l-t3", "gold");
+      letters("#l-name", "gold");
+
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#l-grain", { backgroundPosition: "0px 0px" }, { backgroundPosition: "2560px 1792px", duration: 13, ease: "steps(195)" }, 0);
+
+      // 0.8 s: out of the dark, the seed. Light arrives with it; it turns slightly as it lands.
+      tl.fromTo("#l-ground", { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power2.out" }, 0.8);
+      tl.fromTo("#l-seed", { opacity: 0, scale: 1.18, rotation: -5 }, { opacity: 1, scale: 1, rotation: 0, duration: 1.6, ease: "expo.out" }, 0.8);
+      tl.fromTo("#l-sheen", { backgroundPosition: "100% 0%" }, { backgroundPosition: "0% 0%", duration: 1.4, ease: "power2.inOut" }, 1.15);
+
+      // 2.9 s: the seed settles into its place on the cover while the title builds above it.
+      tl.to("#l-seed", { y: -30, scale: 0.395, duration: 0.95, ease: "power3.inOut" }, 2.9);
+      tl.fromTo("#l-t1 .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out", stagger: 0.12 }, 3.25);
+      tl.fromTo("#l-t2 .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 3.5);
+      tl.fromTo("#l-div-line", { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "power2.inOut" }, 3.8);
+      tl.fromTo("#l-div-dot", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 4.1);
+      tl.fromTo("#l-t3 .ch", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.32, ease: "power2.out", stagger: 0.09 }, 4.1);
+
+      // 5.0 s: the frame is traced and the author signs it: it is the cover. It holds, whole.
+      tl.fromTo("#l-coverbg", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 5.0);
+      tl.fromTo(["#l-fl-top", "#l-fl-bot"], { scaleX: 0 }, { scaleX: 1, duration: 1.0, ease: "power2.inOut" }, 5.0);
+      tl.fromTo(["#l-fl-left", "#l-fl-right"], { scaleY: 0 }, { scaleY: 1, duration: 1.0, ease: "power2.inOut" }, 5.0);
+      tl.fromTo("#l-name .ch", { opacity: 0.0, filter: "blur(4px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power2.out", stagger: 0.05 }, 5.35);
+      tl.fromTo(".spark", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out", stagger: 0.08 }, 5.85);
+
+      // 7.0 s: the cover is carried aside to make room for the call to action.
+      tl.to("#l-cover", { scale: 0.58, x: -230, y: 238, duration: 0.95, ease: "power3.inOut" }, 7.0);
+      tl.fromTo("#l-kick", { opacity: 0, filter: "blur(8px)" }, { opacity: 0.8, filter: "blur(0px)", duration: 0.3, ease: "power4.out" }, 7.6);
+      tl.fromTo("#l-quote", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, 8.1);
+      tl.fromTo("#l-btn", { opacity: 0, scale: 0.92, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 8.9);
+      tl.fromTo("#l-handle", { opacity: 0, filter: "blur(6px)" }, { opacity: 0.85, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 9.4);
+
+      tl.set({}, {}, 13);
+      window.__timelines["libro"] = tl;
+    })();
+  </script>
+</template>

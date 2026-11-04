@@ -2,8 +2,7 @@
 
 GOAL:    Faire qu'un abonné Instagram veuille lire le livre : il suit la prémisse et retient la graine, le titre et « link en bio ».
 OUTPUT:  HyperFrames, 1080×1350 (post Instagram 4:5), 30 fps. (v1 était un Reel 1080×1920.)
-TIME:    31,5 s × 30 = 945 frames. Pas de musique dans le fichier (aucune source accessible) : la musique s'ajoute dans Instagram, et le fichier porte les bruitages.
-
+TIME:    44,5 s × 30 = 1335 frames (v3, plus lent : chaque ligne tient ≥ 0,5 s + 0,3 s par mot, ×1,3). Pas de musique dans le fichier ; la musique s'ajoute dans Instagram.
 LOOK:    Le site du livre, en matière et non en vide.
          - Sol : noir chaud #0b0906, avec un halo radial #2a1d0c à 35 % au centre (comme le site) et 3 % de grain fixe.
          - Monde de Teneritas : sol #070b10, encre givre #dfe9f0.
@@ -25,33 +24,30 @@ MOTION:  - Arrivée : expo.out ou power4.out, 0,5–0,9 s. Sortie : flou 8 px + 
          - Mots : 70–100 ms de décalage ; lettres : 1 frame (33 ms).
          - Un titre posé ne bouge plus.
 
-SHOTS (secondes, temps absolu) :
-  relato 0–16,5
-   0,0–3,0   Le frame 0 montre déjà « En la fría nación de / Teneritas ». Le givre pousse depuis les bords.
-             « Teneritas » 250 px en givre. Lecture en bas à gauche (y 1000–1300).
-   3,0–6,3   « Una joven / recibirá / una misión » : chaque mot passe du gris à l'ivoire, 90 ms d'écart. « misión » en or : premier objet chaud.
-   6,3–9,9   « Para la que, lo sepa o no, / se ha estado / preparando / toda su vida. » : lignes floutées puis nettes, centrées verticalement.
-   9,6–10,4  Inondation : le sol passe du froid au chaud et le givre vire à l'or (les veines).
-  10,2–13,8  « Junto a compañeros de tierras vecinas, / emprenderá / el viaje por / todo el Forte » :
-             une veine-route dorée se dessine de gauche à droite, la caméra glisse de 320 px.
-  13,9–16,5  « A fin de lograr / la revolución / que salve a la humanidad. » : « revolución » lettre par lettre, en or.
-  row 16,5–22,3
-  16,5–17,7  Fouet d'entrée : « Deberá apurarse. »
-  17,7–20,2  « Row » à 420 px qui claque (échelle 1,25 → 1, 0,22 s expo.out), sous-ligne « tiene intereses distintos de los suyos. »
-  20,2–22,3  « Lo que pase en el este / podría condenar / el destino de todos. » puis flou vers le noir.
-  libro 22,3–31,5
-  22,3–23,0  Noir et montée (riser).
-  23,0–24,4  La graine surgit, la lumière la balaie, impact. 760 px de large.
-  24,2–26,2  Le titre se construit au-dessus : « La Revolución / Lufua: » + séparateur + « Siembra » lettre par lettre.
-  26,0–27,2  Le double filet se trace autour et « Felipe Pollitzer » apparaît : c'est la couverture.
-  27,2–28,2  La couverture glisse et rapetisse (×0,62) vers le haut. « Novela · Primer libro de la trilogía » au-dessus.
-  28,0–31,5  « Aquí soy semilla, árbol y fruto. », puis le bouton « Comprar el libro », puis « Link en bio · @felipe.pollitzer ».
-             Tenu au moins 2,5 s.
+SHOTS (secondes, temps absolu, v3) :
+  relato 0–23,5   (le décor de veines pousse lentement de 6 % sur toute la scène ; grain animé ; vignettage 50 % aux bords)
+   0,0–4,2   « En la fría nación de / Teneritas » à l'écran dès le frame 0, givre déjà présent aux bords.
+   3,95–8,6  « Una joven / recibirá / una misión » : mots de l'ombre à l'ivoire (140 ms d'écart), « misión » en or à 4,85.
+   8,35–13,6 « para la que, lo sepa o no, / se ha estado / preparando / toda su vida. » : une ligne toutes les 0,5 s.
+  13,25–14,45 Inondation : sol froid → chaud, givre → veines d'or.
+  14,2–19,4  « Junto a compañeros… / emprenderá / el viaje por / todo el Forte » ; la route d'or se trace (14,7–18,9) ; la caméra glisse de 320 px.
+  19,15–23,5 « a fin de lograr / la revolución (lettre par lettre, or) / que salve a la humanidad. » ; fouet de sortie à 23,26.
+  row 23,5–31,5
+  23,5–25,35 Fouet d'entrée : « Deberá apurarse. » sur les veines d'or encore vivantes.
+  25,35–28,5 « Row » claque (×1,25 → 1) ; les veines s'éteignent de droite à gauche en 2,6 s, la chaleur quitte le cadre.
+  28,45–31,5 « Lo que pase en el este / podría condenar / el destino / de todos. » puis tout s'éteint.
+  libro 31,5–44,5
+  31,5–32,3  Noir, montée.
+  32,3–34,4  La graine surgit en tournant légèrement (−5° → 0), la lumière la balaie ; impact.
+  34,4–35,9  Elle prend sa place sur la couverture ; le titre se construit (« Siembra » lettre par lettre).
+  36,5–38,5  Le cadre se trace, « Felipe Pollitzer » signe : la couverture entière tient ~1 s.
+  38,5–39,45 La couverture glisse à gauche (×0,58).
+  39,1–44,5  « Novela / Primer libro de la trilogía », la citation, « Comprar el libro », « Link en bio / @felipe.pollitzer ». Tenu ≥ 3,5 s.
 
-SOUND:   whoosh-short au fouet (16,5) ; impact-bass-2 sur « Row » (17,7) ; riser de 22,3 vers impact-bass-1 sur la graine (23,0) ;
-         whoosh-cinematic sur le déplacement de la couverture (27,2). Rien d'autre. La musique s'ajoute dans Instagram.
+SOUND:   whoosh-short au fouet (23,5) ; impact-bass-2 sur « Row » (25,35) ; riser vers impact-bass-1 sur la graine (32,3) ;
+         whoosh-cinematic sur le déplacement de la couverture (38,95). Rien d'autre. La musique s'ajoute dans Instagram.
 
-SAFE:    Rien sous y 168 ; tout le texte entre y 168 et 1330 ; x entre 108 et 940 (rail d'actions à droite).
+SAFE:    Post 4:5 : tout le texte dans la zone titre 80 % (x 108–972, y 135–1215).
 
 BANNED:  vide sombre avec petits éléments flottants ; particules décoratives ; halos néon ; tout centré ; chaque ligne qui fond et glisse vers le haut ;
          titres qui dérivent après s'être posés ; trois cartes ; logo docké ; mots inventés hors du site

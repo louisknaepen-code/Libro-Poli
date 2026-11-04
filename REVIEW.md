@@ -1,5 +1,13 @@
 # REVIEW — Tráiler « Siembra »
 
+## v3 — plus lent, plus « cinéma » (44,5 s, 4:5)
+- Rythme ×1,3–1,5 : chaque ligne laisse le temps de lire ; l'écran final tient ≥ 3,5 s.
+- Les phrases se chevauchent (la suivante entre pendant que la précédente sort) au lieu de laisser un trou.
+- Finition : grain animé, vignettage, flou de mouvement au rendu (`data-motion-blur="on"`), décor de veines qui pousse lentement (les titres, eux, restent immobiles).
+- Scène Row refaite : les veines d'or de la révolution sont encore là, puis s'éteignent de droite à gauche quand Row arrive. Ce n'est plus du texte sur un fond vide.
+- Écran final : « Novela » / « Primer libro de la trilogía » sur deux lignes propres.
+- `check` : OK (seul avertissement gardé : `timeline_track_too_dense`, voulu).
+
 ## v2 — post Instagram 4:5 (1080×1350)
 - Toutes les scènes ont été recomposées pour 1350 px de haut ; le minutage et le son sont inchangés.
 - Fin en mise en page de pub de livre : couverture à gauche (×0,58), texte à droite (antétitre, citation, bouton, « Link en bio / @felipe.pollitzer »).
