@@ -1,0 +1,82 @@
+<template>
+  <style>
+    @font-face { font-family: "Cormorant Garamond"; src: url("assets/fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2"); font-weight: 500; font-style: italic; }
+    @font-face { font-family: "Cormorant Garamond"; src: url("assets/fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; }
+    @font-face { font-family: "Cormorant Garamond"; src: url("assets/fonts/cormorant-garamond-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Cormorant Garamond", "EB Garamond", serif;
+      color: #efe6d4;
+    }
+    #w-ground { position: absolute; inset: 0; background: radial-gradient(ellipse 90% 60% at 30% 40%, #1a1410 0%, #0a0807 60%, #030202 100%); }
+    #w-grain { position: absolute; inset: 0; background: url("assets/img/grain.png"); opacity: 0.07; mix-blend-mode: overlay; }
+    #w-stage { position: absolute; inset: 0; }
+    .w-line { position: absolute; left: 108px; width: 864px; }
+    .q { font-style: italic; font-weight: 500; font-size: 58px; line-height: 1.15; opacity: 0.78; }
+    .b { font-weight: 600; font-size: 132px; line-height: 1.0; letter-spacing: -0.01em; }
+    .w { display: inline-block; }
+
+    #w-l1 { top: 700px; }
+    #w-l1 .b { font-size: 180px; }
+    #w-l2 { top: 470px; }
+    #w-name { font-weight: 700; font-size: 420px; line-height: 0.9; letter-spacing: -0.03em; transform-origin: 20% 60%; display: inline-block; }
+    #w-l2 .q { margin-top: 40px; }
+    #w-l3 { top: 560px; }
+    #w-l3 .q { margin-bottom: 22px; }
+    #w-shade { position: absolute; inset: 0; background: #000; opacity: 0; }
+  </style>
+
+  <div id="root" data-composition-id="row" data-width="1080" data-height="1920">
+    <div id="w-stage">
+      <div id="w-ground"></div>
+      <div id="w-grain"></div>
+
+      <div id="w-l1" class="w-line clip" data-start="0" data-duration="1.2" data-track-index="1">
+        <div class="b"><span class="w">Deberá</span><br /><span class="w">apurarse.</span></div>
+      </div>
+
+      <div id="w-l2" class="w-line clip" data-start="1.2" data-duration="2.5" data-track-index="1">
+        <div><span id="w-name">Row</span></div>
+        <div class="q"><span class="w">tiene</span> <span class="w">intereses</span> <span class="w">distintos</span><br /><span class="w">de</span> <span class="w">los</span> <span class="w">suyos.</span></div>
+      </div>
+
+      <div id="w-l3" class="w-line clip" data-start="3.7" data-duration="2.1" data-track-index="1">
+        <div class="q"><span class="w">Lo</span> <span class="w">que</span> <span class="w">pase</span> <span class="w">en</span> <span class="w">el</span> <span class="w">este</span></div>
+        <div class="b"><span class="w">podría</span> <span class="w">condenar</span></div>
+        <div class="b"><span class="w">el</span> <span class="w">destino</span></div>
+        <div class="b"><span class="w">de</span> <span class="w">todos.</span></div>
+      </div>
+
+      <div id="w-shade"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // Whip in, matching the outgoing whip's direction.
+      tl.fromTo("#w-stage", { x: 260, filter: "blur(22px)" }, { x: 0, filter: "blur(0px)", duration: 0.26, ease: "expo.out" }, 0);
+      // Dip cut before Row: the frame darkens for 3 frames, then a hard cut.
+      tl.fromTo("#w-shade", { opacity: 0 }, { opacity: 0.4, duration: 0.1, ease: "none" }, 1.1);
+      tl.set("#w-shade", { opacity: 0 }, 1.2);
+
+      // Row slams in, then holds dead still.
+      tl.fromTo("#w-name", { scale: 1.25, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.22, ease: "expo.out" }, 1.2);
+      tl.fromTo("#w-l2 .q .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 0.78, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: 0.07 }, 1.62);
+
+      // The stakes, line by line from shadow to ivory.
+      tl.fromTo("#w-l3 .q .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 0.78, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: 0.067 }, 3.72);
+      tl.fromTo("#w-l3 .b .w", { color: "#2a2420" }, { color: "#efe6d4", duration: 0.3, ease: "power2.out", stagger: 0.1 }, 4.1);
+
+      // Everything goes out to black, word by word.
+      tl.to("#w-l3 .w", { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power2.in", stagger: 0.035 }, 5.3);
+      tl.to("#w-ground", { opacity: 0, duration: 0.4, ease: "power2.in" }, 5.4);
+
+      window.__timelines["row"] = tl;
+    })();
+  </script>
+</template>
