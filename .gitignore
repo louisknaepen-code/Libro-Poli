@@ -1,3 +1,5 @@
 .hyperframes/
 node_modules/
 .DS_Store
+out/work-*/
+out/.*hf-transaction*/
